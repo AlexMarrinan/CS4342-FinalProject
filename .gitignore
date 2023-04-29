@@ -1,0 +1,6 @@
+
+.gitattributes
+tabular-playground-series-apr-2022/sample_submission.csv
+tabular-playground-series-apr-2022/test.csv
+tabular-playground-series-apr-2022/train.csv
+tabular-playground-series-apr-2022/train_labels.csv
