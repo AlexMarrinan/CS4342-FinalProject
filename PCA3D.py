@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 
 # Load training data
@@ -21,19 +22,22 @@ sensor9 = reshaped_data[:,:,9]
 sensor10 = reshaped_data[:,:,10]
 sensor11 = reshaped_data[:,:,11]
 sensor12 = reshaped_data[:,:,12]
-trainingData = np.column_stack((sensor0,sensor1,sensor2,sensor3,sensor4,sensor5,sensor6,sensor7,sensor8,sensor9,sensor10,sensor11,sensor12))
+trainingData = np.column_stack((sensor2,sensor4))
 y = pd.read_csv("labels_CS.csv")
 y = y.values.reshape(-1)
 
 # Reduce dimensionality with PCA
-pca = PCA(n_components=2)
+pca = PCA(n_components=3)
 pca_data = pca.fit_transform(trainingData)
 
 # Visualize data and labels in PCA space
 colors = ['blue' if label == 0 else 'red' for label in y]
 
-plt.scatter(pca_data[:, 0], pca_data[:, 1], c=colors)
-plt.xlabel("PC1")
-plt.ylabel("PC2")
-plt.title("PCA visualization of training data")
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(pca_data[:, 0], pca_data[:, 1], pca_data[:, 2], c=colors)
+ax.set_xlabel('PC1')
+ax.set_ylabel('PC2')
+ax.set_zlabel('PC3')
+ax.set_title('3D PCA visualization of training data')
 plt.show()
