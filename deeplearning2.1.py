@@ -7,8 +7,8 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras import regularizers
+from keras import layers
+from keras import regularizers
 
 
 trainingData = pd.read_csv("train_CS.csv", header=None)
@@ -45,6 +45,7 @@ model = keras.Sequential()
 
 model.add(layers.Dense(12, activation=tf.keras.layers.LeakyReLU(alpha=0.1), input_dim=120))
 model.add(layers.Dense(6, activation=tf.keras.layers.LeakyReLU(alpha=0.1)))
+model.add(layers.Dense(3, activation=tf.keras.layers.LeakyReLU(alpha=0.1)))
 model.add(layers.Dense(1, activation='sigmoid'))
 
 
